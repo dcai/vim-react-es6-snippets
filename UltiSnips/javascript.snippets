@@ -1,9 +1,25 @@
-snippet component "define es6 style react component"
+snippet r:comp "define es6 style react component"
 import React from 'react';
 
-export default class $1 extends React.Component {
+export default class ${1:MyComponent} extends React.Component {
+    constructor(props) {
+        super(props);
+        // this.state = {};
+    }
     render() {
-	$2
+        return (<div>$2</div>);
     }
 }
+endsnippet
+
+snippet r:simple_comp "define statelss component"
+const ${1:MyComponent} = (props) => <div>${2}</div>;
+endsnippet
+
+snippet r:func "define es6 style function"
+${1:myfunction} = () => {}
+endsnippet
+
+snippet r:map "map"
+${1:list}.map( (${2:item}) => ${3:item} )
 endsnippet
