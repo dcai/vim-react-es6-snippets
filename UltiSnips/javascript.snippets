@@ -1,7 +1,7 @@
-snippet r:comp "define es6 style react component"
+snippet r:init "define es6 style react component"
 import React from 'react';
 
-export default class ${1:MyComponent} extends React.Component {
+class ${1:MyComponent} extends React.Component {
     constructor(props) {
         super(props);
         // this.state = {};
@@ -10,16 +10,98 @@ export default class ${1:MyComponent} extends React.Component {
         return (<div>$2</div>);
     }
 }
+
+$1.propTypes = {
+    children: React.PropTypes.node,
+    params: React.PropTypes.object,
+};
+
+export default $1;
 endsnippet
 
 snippet r:simple_comp "define statelss component"
-const ${1:MyComponent} = (props) => <div>${2}</div>;
+const ${1:MyComponent} = (props) => <div>${2}</div>;$0
+endsnippet
+
+snippet r:cdm "component did mount" b
+componentDidMount() {
+    ${1}
+}$0
+endsnippet
+
+snippet r:cdup "component did update" b
+componentDidUpdate(prevProps, prevState) {
+    ${1}
+}$0
+endsnippet
+
+snippet r:cwm "component will mount" b
+componentWillMount() {
+    ${1}
+}$0
+endsnippet
+
+snippet r:cwr "component will receive props" b
+componentWillReceiveProps(nextProps) {
+    ${1}
+}$0
+endsnippet
+
+snippet r:cwun "component will unmount" b
+componentWillUnmount() {
+    ${1}
+}$0
+endsnippet
+
+snippet r:cwu "component will update" b
+componentWillUpdate(nextProps, nextState) {
+    ${1}
+}$0
+endsnippet
+
+snippet r:scu "Should component update"
+shouldComponentUpdate(nextProps, nextState) {
+    ${1}
+}$0
+endsnippet
+
+snippet r:fup
+forceUpdate(${1:callback});
+endsnippet
+
+snippet r:dom "ReactDOM render"
+ReactDOM.render(
+    ${1:<div></div>},
+    document.getElementById('app')
+);
 endsnippet
 
 snippet r:func "define es6 style function"
 ${1:myfunction} = () => {}
 endsnippet
 
-snippet r:map "map"
-${1:list}.map( (${2:item}) => ${3:item} )
+snippet r:map "map" i
+${1:list}.map( (${2:item}, index) =>
+		( <div key={index}>$2</div> ) )
+endsnippet
+
+snippet r:onclick "bind click event" i
+onClick={this.${1:onClick}.bind(this)}
+endsnippet
+
+snippet r:i:react "import react-router"
+import ReactDOM from 'react-dom';
+import React from 'react';
+endsnippet
+
+snippet r:i:router "import react-router"
+import { Router, Route, IndexRoute, useRouterHistory } from 'react-router';
+endsnippet
+
+snippet r:i:route "import route"
+import { Link } from 'react-router';
+endsnippet
+
+snippet r:i:history "import history"
+import { createHashHistory } from 'history';
 endsnippet
