@@ -1,4 +1,4 @@
-snippet r:init "define es6 style react component"
+snippet r:init "Initialise a new component"
 import React from 'react';
 
 class ${1:MyComponent} extends React.Component {
@@ -19,57 +19,73 @@ $1.propTypes = {
 export default $1;
 endsnippet
 
+snippet r:comp "define a react component"
+class ${1:MyComponent} extends React.Component {
+    render() {
+        return (<div>$2</div>);
+    }
+}
+endsnippet
+
 snippet r:simple_comp "define statelss component"
 const ${1:MyComponent} = (props) => <div>${2}</div>;$0
 endsnippet
 
-snippet r:cdm "component did mount" b
+snippet r:gcc "getChildContext()" b
+getChildContext() {
+    return {
+	${1}
+    }
+}$0
+endsnippet
+
+snippet r:cdm "componentDidMount()" b
 componentDidMount() {
     ${1}
 }$0
 endsnippet
 
-snippet r:cdup "component did update" b
+snippet r:cdup "componentDidUpdate()" b
 componentDidUpdate(prevProps, prevState) {
     ${1}
 }$0
 endsnippet
 
-snippet r:cwm "component will mount" b
+snippet r:cwm "componentWillMount()" b
 componentWillMount() {
     ${1}
 }$0
 endsnippet
 
-snippet r:cwr "component will receive props" b
+snippet r:cwr "componentWillReceiveProps()" b
 componentWillReceiveProps(nextProps) {
     ${1}
 }$0
 endsnippet
 
-snippet r:cwun "component will unmount" b
+snippet r:cwun "componentWillUnmount()" b
 componentWillUnmount() {
     ${1}
 }$0
 endsnippet
 
-snippet r:cwu "component will update" b
+snippet r:cwu "componentWillUpdate()" b
 componentWillUpdate(nextProps, nextState) {
     ${1}
 }$0
 endsnippet
 
-snippet r:scu "Should component update"
+snippet r:scu "shouldComponentUpdate()"
 shouldComponentUpdate(nextProps, nextState) {
     ${1}
 }$0
 endsnippet
 
-snippet r:fup
+snippet r:fup "forceUpdate()"
 forceUpdate(${1:callback});
 endsnippet
 
-snippet r:dom "ReactDOM render"
+snippet r:dom "ReactDOM.render()"
 ReactDOM.render(
     ${1:<div></div>},
     document.getElementById('app')
