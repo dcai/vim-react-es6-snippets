@@ -16,6 +16,10 @@ $1.propTypes = {
     params: React.PropTypes.object,
 };
 
+$1.contextTypes = {
+    store: React.PropTypes.object
+};
+
 export default $1;
 endsnippet
 
@@ -28,15 +32,28 @@ class ${1:MyComponent} extends React.Component {
 endsnippet
 
 snippet r:simple_comp "define statelss component"
-const ${1:MyComponent} = (props) => <div>${2}</div>;$0
+const ${1:MyComponent} = (props, context) => <div>${2}</div>;$0
+$1.contextTypes = {
+    store: React.PropTypes.object
+}
 endsnippet
 
-snippet r:gcc "getChildContext()" b
-getChildContext() {
-    return {
-	${1}
+snippet r:provider "getChildContext()"
+export class ${1:Provider} extends React.Component {
+    getChildContext() {
+        return {
+	    ${2:store}: this.props.$2
+        }
     }
-}$0
+    render() {
+        return this.props.children;
+    }
+}
+
+$1.childContextTypes = {
+    $2: React.PropTypes.object
+};
+
 endsnippet
 
 snippet r:cdm "componentDidMount()" b
