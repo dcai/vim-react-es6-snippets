@@ -2,22 +2,22 @@ snippet r:init "Initialise a new component"
 import React from 'react';
 
 class ${1:MyComponent} extends React.Component {
-    constructor(props) {
-        super(props);
-        // this.state = {};
-    }
-    render() {
-        return (<div>$2</div>);
-    }
+  constructor(props) {
+    super(props);
+      // this.state = {};
+  }
+  render() {
+    return (<div>$2</div>);
+  }
 }
 
 $1.propTypes = {
-    children: React.PropTypes.node,
-    params: React.PropTypes.object,
+  children: React.PropTypes.node,
+  params: React.PropTypes.object,
 };
 
 $1.contextTypes = {
-    store: React.PropTypes.object
+  store: React.PropTypes.object
 };
 
 export default $1;
@@ -25,76 +25,76 @@ endsnippet
 
 snippet r:comp "define a react component"
 class ${1:MyComponent} extends React.Component {
-    render() {
-        return (<div>$2</div>);
-    }
+  render() {
+    return (<div>$2</div>);
+  }
 }
 endsnippet
 
 snippet r:simple_comp "define statelss component"
 const ${1:MyComponent} = (props, context) => <div>${2}</div>;$0
 $1.contextTypes = {
-    store: React.PropTypes.object
+  store: React.PropTypes.object
 }
 endsnippet
 
 snippet r:provider "getChildContext()"
 export class ${1:Provider} extends React.Component {
-    getChildContext() {
-        return {
-	    ${2:store}: this.props.$2
-        }
+  getChildContext() {
+    return {
+      ${2:store}: this.props.$2
     }
-    render() {
-        return this.props.children;
-    }
+  }
+  render() {
+    return this.props.children;
+  }
 }
 
 $1.childContextTypes = {
-    $2: React.PropTypes.object
+  $2: React.PropTypes.object
 };
 
 endsnippet
 
 snippet r:cdm "componentDidMount()" b
 componentDidMount() {
-    ${1}
+  ${1}
 }$0
 endsnippet
 
 snippet r:cdup "componentDidUpdate()" b
 componentDidUpdate(prevProps, prevState) {
-    ${1}
+  ${1}
 }$0
 endsnippet
 
 snippet r:cwm "componentWillMount()" b
 componentWillMount() {
-    ${1}
+  ${1}
 }$0
 endsnippet
 
 snippet r:cwr "componentWillReceiveProps()" b
 componentWillReceiveProps(nextProps) {
-    ${1}
+  ${1}
 }$0
 endsnippet
 
 snippet r:cwun "componentWillUnmount()" b
 componentWillUnmount() {
-    ${1}
+  ${1}
 }$0
 endsnippet
 
 snippet r:cwu "componentWillUpdate()" b
 componentWillUpdate(nextProps, nextState) {
-    ${1}
+  ${1}
 }$0
 endsnippet
 
 snippet r:scu "shouldComponentUpdate()"
 shouldComponentUpdate(nextProps, nextState) {
-    ${1}
+  ${1}
 }$0
 endsnippet
 
@@ -104,8 +104,8 @@ endsnippet
 
 snippet r:dom "ReactDOM.render()"
 ReactDOM.render(
-    ${1:<div></div>},
-    document.getElementById('app')
+  ${1:<div></div>},
+  document.getElementById('app')
 );
 endsnippet
 
