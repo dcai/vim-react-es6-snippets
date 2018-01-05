@@ -1,5 +1,7 @@
-snippet r:init "Initialise a new component"
+snippet react:connected "Initialise a connected react component"
 import React from 'react';
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 class ${1:MyComponent} extends React.Component {
   constructor(props) {
@@ -12,18 +14,33 @@ class ${1:MyComponent} extends React.Component {
 }
 
 $1.propTypes = {
-  children: React.PropTypes.node,
-  params: React.PropTypes.object,
+  children: PropTypes.node,
+  params: PropTypes.object,
 };
 
 $1.contextTypes = {
-  store: React.PropTypes.object
+  store: PropTypes.object
 };
 
-export default $1;
+const fetchDataAction = (payload) => ({
+  type: 'FETCH_DATA',
+  payload
+})
+
+export default connect(
+  (state, ownProps) => ({
+    data: state.date || {}
+  }),
+  {
+    fetchDataAction
+  }
+)($1);
 endsnippet
 
-snippet r:comp "define a react component"
+snippet react:component "define a react component"
+import React from 'react';
+import PropTypes from 'prop-types'
+
 class ${1:MyComponent} extends React.Component {
   render() {
     return (<div>$2</div>);
@@ -31,14 +48,19 @@ class ${1:MyComponent} extends React.Component {
 }
 endsnippet
 
-snippet r:simple_comp "define statelss component"
-const ${1:MyComponent} = (props, context) => <div>${2}</div>;$0
+snippet react:function "define statelss component"
+import PropTypes from 'prop-types'
+
+export default const ${1:MyComponent} = (props, context) => <div>${2}</div>;$0
 $1.contextTypes = {
-  store: React.PropTypes.object
+  store: PropTypes.object
 }
 endsnippet
 
-snippet r:provider "getChildContext()"
+snippet react:provider "getChildContext()"
+import React from 'react';
+import PropTypes from 'prop-types'
+
 export class ${1:Provider} extends React.Component {
   getChildContext() {
     return {
@@ -51,90 +73,64 @@ export class ${1:Provider} extends React.Component {
 }
 
 $1.childContextTypes = {
-  $2: React.PropTypes.object
+  $2: PropTypes.object
 };
-
 endsnippet
 
-snippet r:cdm "componentDidMount()" b
-componentDidMount() {
-  ${1}
-}$0
-endsnippet
-
-snippet r:cdup "componentDidUpdate()" b
-componentDidUpdate(prevProps, prevState) {
-  ${1}
-}$0
-endsnippet
-
-snippet r:cwm "componentWillMount()" b
-componentWillMount() {
-  ${1}
-}$0
-endsnippet
-
-snippet r:cwr "componentWillReceiveProps()" b
-componentWillReceiveProps(nextProps) {
-  ${1}
-}$0
-endsnippet
-
-snippet r:cwun "componentWillUnmount()" b
-componentWillUnmount() {
-  ${1}
-}$0
-endsnippet
-
-snippet r:cwu "componentWillUpdate()" b
-componentWillUpdate(nextProps, nextState) {
-  ${1}
-}$0
-endsnippet
-
-snippet r:scu "shouldComponentUpdate()"
+snippet react:shouldupdate "shouldComponentUpdate()"
 shouldComponentUpdate(nextProps, nextState) {
   ${1}
 }$0
 endsnippet
 
-snippet r:fup "forceUpdate()"
+snippet react:didmount "componentDidMount()" b
+componentDidMount() {
+  ${1}
+}$0
+endsnippet
+
+snippet react:didupdate "componentDidUpdate()" b
+componentDidUpdate(prevProps, prevState) {
+  ${1}
+}$0
+endsnippet
+
+snippet react:willmount "componentWillMount()" b
+componentWillMount() {
+  ${1}
+}$0
+endsnippet
+
+snippet react:willprops "componentWillReceiveProps()" b
+componentWillReceiveProps(nextProps) {
+  ${1}
+}$0
+endsnippet
+
+snippet react:willunmount "componentWillUnmount()" b
+componentWillUnmount() {
+  ${1}
+}$0
+endsnippet
+
+snippet react:willupdate "componentWillUpdate()" b
+componentWillUpdate(nextProps, nextState) {
+  ${1}
+}$0
+endsnippet
+
+snippet react:fup "forceUpdate()"
 forceUpdate(${1:callback});
 endsnippet
 
-snippet r:dom "ReactDOM.render()"
+snippet reactdom:render "ReactDOM.render()"
 ReactDOM.render(
   ${1:<div></div>},
   document.getElementById('app')
 );
 endsnippet
 
-snippet r:func "define es6 style function"
-${1:myfunction} = () => {}
-endsnippet
-
-snippet r:map "map" i
-${1:list}.map( (${2:item}, index) =>
-		( <div key={index}>$2</div> ) )
-endsnippet
-
-snippet r:onclick "bind click event" i
-onClick={this.${1:onClick}.bind(this)}
-endsnippet
-
-snippet r:i:react "import react-router"
-import ReactDOM from 'react-dom';
-import React from 'react';
-endsnippet
-
-snippet r:i:router "import react-router"
-import { Router, Route, IndexRoute, useRouterHistory } from 'react-router';
-endsnippet
-
-snippet r:i:route "import route"
-import { Link } from 'react-router';
-endsnippet
-
-snippet r:i:history "import history"
-import { createHashHistory } from 'history';
+snippet react:map "react.map" i
+React.Children.map(${1:children}, (${2:child}, index) =>
+  ( <div key={index}>$2</div> ) )
 endsnippet
