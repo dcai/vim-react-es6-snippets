@@ -48,6 +48,16 @@ class ${1:MyComponent} extends React.Component {
 }
 endsnippet
 
+
+snippet react:props "Add props"
+  static propTypes = {
+	${1:prop}: PropTypes.string
+  }
+  static defaultProps = {
+	${1}: "string"
+  }
+endsnippet
+
 snippet react:function "define statelss component"
 import PropTypes from 'prop-types'
 
